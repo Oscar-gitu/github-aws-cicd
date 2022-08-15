@@ -5,6 +5,7 @@ phases:
     commands:
       - echo Entered the build phase...
       - echo Se agrego este commit
+      - echo Se agrego este commit2
       - echo Build started on `date`
 
 artifacts:
