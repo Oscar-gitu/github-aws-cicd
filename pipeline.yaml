@@ -1,4 +1,18 @@
 AWSTemplateFormatVersion: 2010-09-09
+Description: CI/CD pipeline for GitHub projects
+Parameters:
+  GitHubOwner:
+    Type: String
+    AllowedPattern: '[A-Za-z0-9-]+'
+    Default: Oscar-gitu
+  GitHubRepository:
+    Type: String
+    AllowedPattern: '[A-Za-z0-9-]+'
+    Default: github-aws-cicd
+  GitHubBranch:
+    Type: String
+    AllowedPattern: '[A-Za-z0-9-]+'
+    Default: master
 Resources:
   RoleCodeBuild:
     Type: 'AWS::IAM::Role'
@@ -62,7 +76,7 @@ Resources:
         - Arn
       Source:
         Type: GITHUB
-        Location: 'https://github.com/Oscar-gitu/github-aws-cicd.git'
+        Location: !Sub 'https://github.com/${GitHubOwner}/${GitHubRepository}.git'
         BuildSpec: buildspec.yaml
         Auth:
           Type: OAUTH
